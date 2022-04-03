@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int maxEnemies;
     [SerializeField] private float spawnRate;
-    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] List<GameObject> enemyPrefabs;
+    [SerializeField] int playerHP = 10;
+    [SerializeField] float levelEnd = 500;
     private GameObject playerObject;
     private int _currentEnemies;
     private float lastSpawnTime;
@@ -23,13 +25,33 @@ public class GameManager : MonoBehaviour
             SpawnEnemy();
             lastSpawnTime = Time.time;
         }
+        if(playerObject.transform.position.y > levelEnd)
+        {
+            PlayerWon();
+        }
     }
 
     void SpawnEnemy()
     {
+        int enemyType;
         Debug.Log("Spawning Enemy");
-        Instantiate(enemyPrefabs[0]);
+        enemyType = Random.Range(0, enemyPrefabs.Count);
+        Instantiate(enemyPrefabs[enemyType]);
         _currentEnemies++;
+    }
+    public void PlayerWasHit()
+    {
+        playerHP--;
+        if(playerHP<=0)
+        {
+            Debug.Log("Game Over");
+        }
+    }
+
+    private void PlayerWon()
+    {
+        Debug.Log("Player won the level!");
+
     }
     //ENCAPSULATION
     public int CurrentEnemies

@@ -28,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
     //ABSTRACTION
     protected virtual void InitializeObject()
     {
+        if (Random.Range(0, 2) == 1)
+            spawnOffset.x = -spawnOffset.x;
         transform.position = player.position + spawnOffset;
     }
     //ABSTRACTION
@@ -44,10 +46,19 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    public void OnDeath()
+    private void OnDeath()
     {
         gameManager.CurrentEnemies--;
         Destroy(gameObject);
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "Player")
+        {
+            Debug.Log("Player was hit!");
+            OnDeath();
+        }
     }
 
     public virtual void SpecialMove()
