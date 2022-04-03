@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D playerRb;
+    private Rigidbody playerRb;
     [SerializeField] private float rangeX;
     [SerializeField] private float rangeY;
-    [SerializeField] private float speedX;
+    [SerializeField] private float maxVelocity;
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = gameObject.GetComponent<Rigidbody2D>();
+        playerRb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,33 +19,39 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.S))
         {
-            Debug.Log("Up Force Added");
-            playerRb.AddForce(new Vector2(0, 3000));
+            if (playerRb.velocity.y < maxVelocity)
+            {
+                Debug.Log("Up Force Added");
+                playerRb.AddForce(new Vector3(0, 3000, 0));
+            }
         }
         else if(Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Left Force Added");
-            playerRb.MovePosition(new Vector2(gameObject.transform.position.x -
-                                            speedX * Time.deltaTime,
-                                            gameObject.transform.position.y));
-            //playerRb.AddForce(new Vector2(-3000, 0));
+            if(playerRb.velocity.x > -maxVelocity)
+            {
+                Debug.Log("Left Force Added");
+                playerRb.AddForce(new Vector3(-3000, 0, 0));
+            }
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Right Force Added");
-            playerRb.MovePosition(new Vector2(gameObject.transform.position.x +
-                                speedX * Time.deltaTime,
-                                gameObject.transform.position.y));
-            //playerRb.AddForce(new Vector2(3000, 0));
+            if (playerRb.velocity.x < maxVelocity)
+            {
+                Debug.Log("Right Force Added");
+                playerRb.AddForce(new Vector3(3000, 0, 0));
+            }
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            Debug.Log("Down Force Added");
-            playerRb.AddForce(new Vector2(0, -1000));
+            if (playerRb.velocity.y > 0)
+            {
+                Debug.Log("Down Force Added");
+                playerRb.AddForce(new Vector3(0, -1000, 0));
+            }
         }
         if (gameObject.transform.position.x > rangeX)
-            gameObject.transform.position = new Vector2(rangeX, gameObject.transform.position.y);
+            gameObject.transform.position = new Vector3(-rangeX, gameObject.transform.position.y,0);
         else if (gameObject.transform.position.x < -rangeX)
-            gameObject.transform.position = new Vector2(-rangeX, gameObject.transform.position.y);
+            gameObject.transform.position = new Vector3(rangeX, gameObject.transform.position.y,0);
     }
 }
