@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
                                         playerTarget.position.y + camOffset.y, camOffset.z);
             lastPosition = transform.position;
         }
-        else if (transform.position.y-playerTarget.position.y > camOffset.y*2)
+        else if (transform.position.y-playerTarget.position.y > camOffset.y*4)
         {
             gameManager.PlayerLost();
         }
