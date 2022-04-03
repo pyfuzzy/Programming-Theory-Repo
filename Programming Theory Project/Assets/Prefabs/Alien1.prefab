@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0161fd7e2de54ef4a2075ea8d0cfc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 10
+  enemySpeed: 20
   maxDistance: 40
   spawnOffset: {x: 30, y: 20, z: 0}
   rotateSpeed: {x: 0, y: 0, z: 0}

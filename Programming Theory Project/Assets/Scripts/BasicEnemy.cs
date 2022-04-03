@@ -57,6 +57,7 @@ public class BasicEnemy : MonoBehaviour
         if(other.name == "Player")
         {
             Debug.Log("Player was hit!");
+            gameManager.PlayerWasHit();
             OnDeath();
         }
     }

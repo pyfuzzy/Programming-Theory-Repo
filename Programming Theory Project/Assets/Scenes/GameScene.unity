@@ -443,6 +443,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7066617467457641193, guid: 20710bbe2a9e944d1b1aeae1c1dbeb13, type: 3}
   - {fileID: 242646927041819529, guid: 93e2deb0327ea48829962f873fbc161f, type: 3}
+  playerHP: 10
+  levelEnd: 500
 --- !u!4 &1278332180
 Transform:
   m_ObjectHideFlags: 0
@@ -530,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5470305243004396207, guid: eb3d061093c8b4a3fae69646aa5835cb, type: 3}
       propertyPath: maxVelocity
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb3d061093c8b4a3fae69646aa5835cb, type: 3}
