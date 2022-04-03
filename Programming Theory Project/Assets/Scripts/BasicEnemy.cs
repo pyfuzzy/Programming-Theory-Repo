@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-    private Transform player;
-    private GameManager gameManager;
-    [SerializeField] float enemySpeed = 10f;
-    [SerializeField] private float maxDistance;
+    protected Transform player;
+    protected GameManager gameManager;
+    protected float xRange = 25f;
+    [SerializeField] protected float enemySpeed = 10f;
+    [SerializeField] protected float maxDistance;
+    [SerializeField] protected Vector3 spawnOffset;
+    [SerializeField] protected Vector3 rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        InitializeObject();
     }
 
     // Update is called once per frame
@@ -21,10 +25,15 @@ public class BasicEnemy : MonoBehaviour
         Move();
         CheckBounds();
     }
-
+    //ABSTRACTION
+    protected virtual void InitializeObject()
+    {
+        transform.position = player.position + spawnOffset;
+    }
+    //ABSTRACTION
     public virtual void Move()
     {
-        this.transform.position = Vector2.MoveTowards(this.transform.position, player.position, Time.deltaTime * enemySpeed);
+
     }
 
     private void CheckBounds()
@@ -35,13 +44,13 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    public virtual void OnDeath()
+    public void OnDeath()
     {
         gameManager.CurrentEnemies--;
         Destroy(gameObject);
     }
 
-    public virtual void Attack()
+    public virtual void SpecialMove()
     {
 
     }

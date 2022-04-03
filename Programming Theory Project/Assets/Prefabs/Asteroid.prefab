@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7066617467457641195}
   - component: {fileID: 7066617467457641194}
   - component: {fileID: 7066617467457641198}
-  - component: {fileID: 6358822250711065045}
+  - component: {fileID: 954667330}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -106,14 +106,14 @@ Rigidbody:
   m_GameObject: {fileID: 7066617467457641193}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6358822250711065045
+--- !u!114 &954667330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7066617467457641193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3c397470ab1490c872c5c3334a96a1, type: 3}
+  m_Script: {fileID: 11500000, guid: a643a2dc1021a4b20b3ff01b3e2ca7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 10
-  maxDistance: 25
+  maxDistance: 50
+  spawnOffset: {x: 0, y: 25, z: 0}
+  rotateSpeed: {x: 30, y: 60, z: 5}

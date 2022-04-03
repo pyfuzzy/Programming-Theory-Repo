@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private GameObject playerObject;
     private int _currentEnemies;
     private float lastSpawnTime;
-    private Vector3 spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +27,11 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        spawnPosition = new Vector3(-25, playerObject.transform.position.y, 0);
-        Instantiate(enemyPrefabs[0], spawnPosition, enemyPrefabs[0].transform.rotation);
+        Debug.Log("Spawning Enemy");
+        Instantiate(enemyPrefabs[0]);
         _currentEnemies++;
     }
-
+    //ENCAPSULATION
     public int CurrentEnemies
     {
         get { return _currentEnemies; }
